@@ -1,3 +1,8 @@
+# frozen_string_literal: true
+
+puts 'Destroying books...'
+Book.destroy_all
+
 puts 'Creating books...'
 
 book1 = Book.new(
