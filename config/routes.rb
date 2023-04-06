@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   #
   namespace 'api' do
     namespace 'v1' do
-      root 'books#index'
+      get '/books', to: 'books#index', as: 'books'
     end
   end
 end
