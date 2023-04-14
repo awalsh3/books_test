@@ -2,7 +2,7 @@ module Api
   module V1
     class BooksController < ApplicationController
       def index
-        books = []
+        books = Book.all
 
         # Create an array to hold the serialized book data
         serialized_books = []
