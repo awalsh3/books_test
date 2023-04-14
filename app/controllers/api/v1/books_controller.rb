@@ -16,8 +16,6 @@ module Api
               author_name: book.author_name,
               title: book.title,
               description: book.description,
-              created_at: book.created_at.iso8601,
-              updated_at: book.updated_at.iso8601,
               rating: book.rating,
               word_count: book.word_count
             }
