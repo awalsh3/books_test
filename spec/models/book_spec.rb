@@ -2,38 +2,50 @@ require 'rails_helper'
 
 RSpec.describe Book, type: :model do
   context 'validity of Book' do
-    it 'is valid with valid attributes' do
-      book = Book.create(
-        author_name: 'Annie Walsh',
-        title: 'A memoir',
-        description: 'The amazing life story',
-        rating: 5,
-        word_count: 100_000
+    let(:book1) do
+      Book.create(
+        author_name: author_name,
+        title: title,
+        description: description,
+        rating: rating,
+        word_count: word_count
       )
-      expect(book).to be_valid
+    end
+    let(:author_name) { 'Annie Walsh' }
+    let(:title) { 'A memoir' }
+    let(:description) { 'The amazing life story' }
+    let(:word_count) { 100_000 }
+    let(:rating) { 5 }
+
+    let(:book2) do
+    Book.create(
+        author_name: author_name,
+        title: title,
+        description: description,
+        rating: rating,
+        word_count: word_count
+      )
+    end
+    let(:author_name) { 'Kathleen Walsh' }
+    let(:title) { 'A memoir' }
+    let(:description) { 'The new and improved life story' }
+    let(:word_count) { 250_000 }
+    let(:rating) { 4 }
+
+    it 'is valid with valid attributes' do
+      expect(book1).to be_valid
     end
 
     it 'is not valid without a unique title' do
-      book = Book.create(
-        author_name: 'Annie Walsh',
-        title: 'A memoir',
-        description: 'The amazing life story',
-        rating: 5,
-        word_count: 100_000
-      )
-      book1 = Book.new(
-        author_name: 'Annie Walsh',
-        title: 'A memoir',
-        description: 'The amazing life story',
-        rating: 5,
-        word_count: 100_000
-      )
-      expect(book1).to_not be_valid
+      book1
+      expect(book2).to_not be_valid
     end
 
-    it 'is not valid without a star rating between 1-5' do
-      book2 = Book.new(rating: 8)
-      expect(book2).to_not be_valid
+    context 'rating not between 1-5' do
+      let(:rating) { 8 }
+        it 'is invalid without a star rating between 1-5' do
+          expect(book1).to_not be_valid
+        end
     end
   end
 end
