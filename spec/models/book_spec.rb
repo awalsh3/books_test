@@ -18,7 +18,7 @@ RSpec.describe Book, type: :model do
     let(:rating) { 5 }
 
     let(:book2) do
-    Book.create(
+      Book.create(
         author_name: author_name,
         title: title,
         description: description,
@@ -43,9 +43,9 @@ RSpec.describe Book, type: :model do
 
     context 'rating not between 1-5' do
       let(:rating) { 8 }
-        it 'is invalid without a star rating between 1-5' do
-          expect(book1).to_not be_valid
-        end
+      it 'is invalid without a star rating between 1-5' do
+        expect(book1).to_not be_valid
+      end
     end
   end
 end
