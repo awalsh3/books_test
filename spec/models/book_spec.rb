@@ -11,12 +11,6 @@ RSpec.describe Book, type: :model do
         word_count: word_count
       )
     end
-    let(:author_name) { 'Annie Walsh' }
-    let(:title) { 'A memoir' }
-    let(:description) { 'The amazing life story' }
-    let(:word_count) { 100_000 }
-    let(:rating) { 5 }
-
     let(:book2) do
       Book.create(
         author_name: author_name,
