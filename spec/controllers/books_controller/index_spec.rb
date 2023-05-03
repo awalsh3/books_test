@@ -5,6 +5,7 @@ RSpec.describe 'API V1 Books', type: :request do
     it 'returns http success' do
       get api_v1_books_path
       expect(response).to have_http_status(:success)
+      expect(response.status).to eq(200)
     end
   end
 end
