@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Book, type: :model do
   context 'validity of Book' do
-    let(:book1) do
+    let!(:book1) do
       Book.create(
         author_name: author_name,
         title: title,
@@ -31,7 +31,6 @@ RSpec.describe Book, type: :model do
     end
 
     it 'is not valid without a unique title' do
-      book1
       expect(book2).to_not be_valid
     end
 
