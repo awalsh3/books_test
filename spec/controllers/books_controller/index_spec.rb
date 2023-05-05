@@ -3,15 +3,22 @@ require 'rails_helper'
 RSpec.describe 'API V1 Books', type: :request do
   context "GET '/api/v1/books'" do
     let(:json) { JSON.parse(response.body).deep_symbolize_keys }
+    let!(:book) do
+      Book.create(
+        author_name: author_name,
+        title: title,
+        description: description,
+        rating: rating,
+        word_count: word_count
+      )
+    end
+    let(:author_name) { 'J.R.R. Tolkien'}
+    let(:title) { 'The Hobbit' }
+    let(:description) { 'the unforgettable story of Bilbo, a peace-loving hobbit, who embarks on a strange and magical adventure. A timeless classic.' }
+    let(:word_count) { 250_000 }
+    let(:rating) { 4 }
 
     it 'returns http success' do
-      book = Book.create(
-        title: 'The Hobbit',
-        author_name: 'J.R.R. Tolkien',
-        description: 'the unforgettable story of Bilbo, a peace-loving hobbit, who embarks on a strange and magical adventure. A timeless classic.',
-        word_count: 560_890,
-        rating: 2
-      )
       get api_v1_books_path
       expect(response).to have_http_status(:success)
       expect(response.status).to eq(200)
