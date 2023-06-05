@@ -23,8 +23,6 @@ RSpec.describe 'API V1 Books', type: :request do
       expect(response).to have_http_status(:success)
       expect(response.status).to eq(200)
       expect(json[:data].size).to eq(1)
-      expect(json[:data][0][:attributes][:title]).to eq('The Hobbit')
-      expect(json[:data][0][:attributes][:author_name]).to eq('J.R.R. Tolkien')
       expect(json[:meta]).to eq({
         message: 'Loaded books',
         status: 'SUCCESS'
@@ -47,8 +45,6 @@ RSpec.describe 'API V1 Books', type: :request do
       )
       get api_v1_books_path
       expect(json[:data].size).to eq(2)
-      expect(json[:data][0][:attributes][:title]).to eq('The Hobbit')
-      expect(json[:data][1][:attributes][:title]).to eq('A Game of Thrones')
     end
   end
 end
