@@ -4,20 +4,20 @@ RSpec.describe Book, type: :model do
   context 'validity of Book' do
     let!(:book1) do
       Book.create(
-        author_name:,
-        title:,
-        description:,
-        rating:,
-        word_count:
+        author_name: author_name,
+        title: title,
+        description: description,
+        rating: rating,
+        word_count: word_count
       )
     end
     let(:book2) do
       Book.create(
-        author_name:,
-        title:,
-        description:,
-        rating:,
-        word_count:
+        author_name: author_name,
+        title: title,
+        description: description,
+        rating: rating,
+        word_count: word_count
       )
     end
     let(:author_name) { "Kathleen Walsh" }
