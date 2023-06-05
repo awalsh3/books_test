@@ -42,7 +42,7 @@ RSpec.describe Book, type: :model do
       end
 
       it "does not raise an exception if rating greater than 3" do
-        expect { book1.low_rating(rating) }.to_not raise_error
+        expect { book1.validate_rating(rating) }.to_not raise_error
       end
     end
   end
