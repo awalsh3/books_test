@@ -45,5 +45,12 @@ RSpec.describe Book, type: :model do
         expect { book1.validate_rating(rating) }.to_not raise_error
       end
     end
+
+    context "rating less than or equal to 3" do
+      let(:rating) { 3 }
+      it "raises an exception if rating less than or equal to 3" do
+        expect { book1.validate_rating(rating) }.to raise_error(StandardError)
+      end
+    end
   end
 end
