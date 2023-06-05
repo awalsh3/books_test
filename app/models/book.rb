@@ -5,6 +5,6 @@ class Book < ApplicationRecord
 
   def validate_rating(rating)
     # if below 3 raise a StandardError.
-    raise StandardError.new("Rating too low. Must be between 3-5") if rating <= 3
+    raise StandardError, "Rating too low. Must be between 3-5" if rating <= 3
   end
 end
