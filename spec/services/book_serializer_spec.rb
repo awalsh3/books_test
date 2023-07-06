@@ -17,9 +17,9 @@ RSpec.describe BookSerializer, type: :model do
      let(:word_count) { 250_000 }
      let(:rating) { 4 }
 
-     it "does something" do
+     it "returns serialized books in json" do
       BookSerializer.serialize(book1)
-      expect(book1).to be_valid
+      expect(book1).to be_json
     end
    end
 end
