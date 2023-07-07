@@ -23,27 +23,39 @@ RSpec.describe BookSerializer, type: :model do
 
      let(:books) { [book1, book2] }
 
-     it "returns serialized books in json" do
+     it "returns serialized books" do
       serialized_result = BookSerializer.serialize(books)
       puts "Here is the class: #{serialized_result.class}"
       expect(serialized_result).to eq({
-        data: [
+         data: [
           {
             type: "books",
-            id: nil,
-            attributes: book1
+            id: "1",
+            attributes: {
+              author_name: book1.author_name,
+              title: book1.title,
+              description: book1.description,
+              rating: book1.rating,
+              word_count: book1.word_count
+            }
           },
           {
             type: "books",
-            id: nil,
-            attributes: book2
+            id: "2",
+            attributes: {
+              author_name: book2.author_name,
+              title: book2.title,
+              description: book2.description,
+              rating: book2.rating,
+              word_count: book2.word_count
+            }
           }
         ],
         meta: {
           status: "SUCCESS",
           message: "Loaded books"
         }
-      }.to_json)
+      })
     end
    end
 end
