@@ -1,7 +1,6 @@
 class BookSerializer
   def self.serialize(books)
     serialized_books = []
-    books = Book.all
     # add method for this edge case when there is only one book
     return if books.count < 1
 
