@@ -1,8 +1,8 @@
 require "rails_helper"
 
 RSpec.describe BookSerializer, type: :model do
-  context 'serialization of book' do
-     let(:book1) do
+  context "serialization of book" do
+    let(:book1) do
       Book.create(
         author_name: "Michael Bond",
         title: "Paddington Bear",
@@ -21,13 +21,13 @@ RSpec.describe BookSerializer, type: :model do
       )
     end
 
-     let(:books) { [book1, book2] }
+    let(:books) { [book1, book2] }
 
-     it "returns serialized books" do
+    it "returns serialized books" do
       serialized_result = BookSerializer.serialize(books)
       puts "Here is the class: #{serialized_result.class}"
       expect(serialized_result).to eq({
-         data: [
+        data: [
           {
             type: "books",
             id: "1",
@@ -57,5 +57,5 @@ RSpec.describe BookSerializer, type: :model do
         }
       })
     end
-   end
+  end
 end
