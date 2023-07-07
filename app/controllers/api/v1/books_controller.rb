@@ -12,7 +12,7 @@ module Api
       end
 
       def books
-        Books.all
+        Book.all
       end
     end
   end
