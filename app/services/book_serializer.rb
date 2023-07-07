@@ -3,7 +3,7 @@ class BookSerializer
     serialized_books = []
     books = Book.all
     # add method for this edge case when there is only one book
-    return if books.count <= 1
+    return if books.count < 1
 
     books.each do |book|
       serialized_books << {
