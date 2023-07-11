@@ -25,7 +25,6 @@ RSpec.describe BookSerializer, type: :model do
 
     it "returns serialized books" do
       serialized_result = BookSerializer.serialize(books)
-      puts "Here is the class: #{serialized_result.class}"
       expect(serialized_result).to eq({
         data: [
           {
