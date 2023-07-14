@@ -47,4 +47,16 @@ RSpec.describe 'API V1 Books', type: :request do
       expect(json[:data].size).to eq(2)
     end
   end
+
+  context 'when serializer does not return a JSON string' do
+    before do
+      # Tell RSpec what behaviour is allowed, what is being stubbed.
+      # RSpec will now raise this error when this class is called, but only in the relevant scope set in RSpec.
+      allow(BookSerializer).to receive(:serialize).and_raise(StandardError)
+    end
+
+    it 'is not successful' do
+      expect(response).to_not be_success
+    end
+  end
 end

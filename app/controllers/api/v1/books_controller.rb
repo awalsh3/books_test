@@ -2,6 +2,8 @@ module Api
   module V1
     class BooksController < ApplicationController
       def index
+        raise StandardError, "Unable to serialize books" if serialized_books.nil?
+
         render json: serialized_books
       end
 
