@@ -29,12 +29,6 @@ RSpec.describe 'API V1 Books', type: :request do
       })
     end
 
-    it 'returns an empty array when there are no books' do
-      Book.destroy_all
-      get api_v1_books_path
-      expect(json[:data]).to be_empty
-    end
-
     it 'returns all books in the response' do
       Book.create(
         author_name: 'George R.R. Martin',
@@ -45,6 +39,16 @@ RSpec.describe 'API V1 Books', type: :request do
       )
       get api_v1_books_path
       expect(json[:data].size).to eq(2)
+    end
+
+    context "No books data" do
+      before do
+        Book.destroy_all
+      end
+        it 'returns an empty array when there are no books' do
+          get api_v1_books_path
+          expect(json[:data]).to be_empty
+        end
     end
   end
 end
