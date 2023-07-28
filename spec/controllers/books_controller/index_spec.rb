@@ -57,7 +57,7 @@ RSpec.describe 'API V1 Books', type: :request do
           get api_v1_books_path
         end
          before do
-          allow(BookSerializer).to receive(:serialize).and_raise(StandardError)
+          allow(Book).to receive(:all).and_raise(StandardError)
          end
          it 'returns a generic 500 error' do
           subject
