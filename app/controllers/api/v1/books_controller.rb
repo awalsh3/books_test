@@ -3,6 +3,8 @@ module Api
     class BooksController < ApplicationController
       def index
         render json: serialized_books
+        rescue
+        render json: {}, status: 500
       end
 
       private
