@@ -45,10 +45,24 @@ RSpec.describe 'API V1 Books', type: :request do
       before do
         Book.destroy_all
       end
-        it 'returns an empty array when there are no books' do
+      it 'returns an empty array when there are no books' do
+        get api_v1_books_path
+        expect(json[:data]).to be_empty
+      end
+    end
+
+    context "Failure" do
+      context 'Controller raises exception' do
+        subject do
           get api_v1_books_path
-          expect(json[:data]).to be_empty
         end
+         before do
+          allow(BookSerializer).to receive(:serialize).and_raise(StandardError)
+         end
+         it 'returns http success' do
+          expect { subject }.to raise_error
+         end
+      end
     end
   end
 end
