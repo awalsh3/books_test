@@ -55,9 +55,9 @@ RSpec.describe 'API V1 Books', type: :request do
       before do
         allow(BookSerializer).to receive(:serialize).and_raise(StandardError)
       end
-      it 'it returns http success' do
+      it 'it returns a 500 error' do
         get api_v1_books_path
-        expect { response }.to raise_error
+        expect(response.status).to eq(500)
       end
     end
   end
