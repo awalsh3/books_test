@@ -41,15 +41,21 @@ RSpec.describe 'API V1 Books', type: :request do
       expect(json[:data].size).to eq(2)
     end
 
-    context "it is not successful" do
-      it 'returns an empty array when there are no books' do
+    context "No books" do
+      before do
         Book.destroy_all
+      end
+      it 'returns an empty array when there are no books' do
         get api_v1_books_path
         expect(json[:data]).to be_empty
       end
+    end
 
-      it 'returns a StandardError' do
+    context "Failure" do
+      before do
         allow(BookSerializer).to receive(:serialize).and_raise(StandardError)
+      end
+      it 'it returns http success' do
         get api_v1_books_path
         expect { response }.to raise_error
       end
