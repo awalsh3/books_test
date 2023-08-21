@@ -3,6 +3,8 @@ module Api
     class BooksController < ApplicationController
       def index
         render json: serialized_books
+      rescue StandardError
+        render json: {}, status: :internal_server_error
       end
 
       private
