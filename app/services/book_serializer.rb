@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
-class BookSerializer
-  def self.serialize(books)
+class BookSerializer # rubocop:todo Style/Documentation
+  def self.serialize(books) # rubocop:todo Metrics/MethodLength
     serialized_books = []
-    # add method for this edge case when there is only one book
     return if books.count < 1
 
     books.each do |book|

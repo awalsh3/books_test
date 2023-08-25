@@ -2,14 +2,14 @@
 
 module Api
   module V1
-    class BooksController < ApplicationController
+    class BooksController < ApplicationController # rubocop:todo Style/Documentation
       def index
         render json: serialized_books
       end
 
       private
 
-      def serialized_books
+      def serialized_books # rubocop:todo Metrics/MethodLength
         if books.empty?
           {
             data: [],
@@ -19,7 +19,7 @@ module Api
             }
           }
         else
-          BookSerializer.serialize(books) # returns a json formatted string, as that is what serialization is in this context.
+          BookSerializer.serialize(books)
         end
       end
 

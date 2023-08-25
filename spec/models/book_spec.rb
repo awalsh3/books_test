@@ -2,8 +2,8 @@
 
 require 'rails_helper'
 
-RSpec.describe Book, type: :model do
-  context 'validity of Book' do
+RSpec.describe Book, type: :model do # rubocop:todo Metrics/BlockLength
+  context 'validity of Book' do # rubocop:todo Metrics/BlockLength
     let!(:book1) do
       Book.create(
         author_name: author_name,

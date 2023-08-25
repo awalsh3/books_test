@@ -2,8 +2,8 @@
 
 require 'rails_helper'
 
-RSpec.describe 'API V1 Books', type: :request do
-  context "GET '/api/v1/books'" do
+RSpec.describe 'API V1 Books', type: :request do # rubocop:todo Metrics/BlockLength
+  context "GET '/api/v1/books'" do # rubocop:todo Metrics/BlockLength
     let(:json) { JSON.parse(response.body).deep_symbolize_keys }
     let!(:book) do
       Book.create(

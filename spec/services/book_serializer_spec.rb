@@ -2,8 +2,8 @@
 
 require 'rails_helper'
 
-RSpec.describe BookSerializer, type: :model do
-  context 'serialization of book' do
+RSpec.describe BookSerializer, type: :model do # rubocop:todo Metrics/BlockLength
+  context 'serialization of book' do # rubocop:todo Metrics/BlockLength
     let(:book1) do
       Book.create(
         author_name: 'Michael Bond',
@@ -25,7 +25,7 @@ RSpec.describe BookSerializer, type: :model do
 
     let(:books) { [book1, book2] }
 
-    it 'returns serialized books' do
+    it 'returns serialized books' do # rubocop:todo Metrics/BlockLength
       serialized_result = BookSerializer.serialize(books)
       puts "Here is the class: #{serialized_result.class}"
       expect(serialized_result).to eq({
