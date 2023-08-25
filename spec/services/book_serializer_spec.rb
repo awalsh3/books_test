@@ -8,7 +8,7 @@ RSpec.describe BookSerializer, type: :model do
       Book.create(
         author_name: 'Michael Bond',
         title: 'Paddington Bear',
-        description: 'The tale goes that he bought a small toy bear for his wife after seeing it left alone on the shelves of Selfridges one evening. He named him Paddington after the train station close to his home.',
+        description: 'The adventures of a small toy bear, Paddington after the train station.',
         rating: 5,
         word_count: 500
       )
@@ -17,7 +17,7 @@ RSpec.describe BookSerializer, type: :model do
       Book.create(
         author_name: 'A. A. Milne',
         title: 'Winnie the Pooh',
-        description: 'The main character, Winnie-the-Pooh (sometimes called simply Pooh or Edward Bear), is a good-natured, yellow-furred, honey-loving bear who lives in the Forest surrounding the Hundred Acre Wood ',
+        description: 'A a good-natured, yellow-furred, honey-loving bear.',
         rating: 4,
         word_count: 600
       )

@@ -17,7 +17,7 @@ RSpec.describe 'API V1 Books', type: :request do
     let(:author_name) { 'J.R.R. Tolkien' }
     let(:title) { 'The Hobbit' }
     let(:description) do
-      'the unforgettable story of Bilbo, a peace-loving hobbit, who embarks on a strange and magical adventure. A timeless classic.'
+      'A peace-loving hobbit, who embarks on a strange and magical adventure.'
     end
     let(:word_count) { 250_000 }
     let(:rating) { 4 }
