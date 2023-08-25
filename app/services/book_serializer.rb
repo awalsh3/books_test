@@ -6,7 +6,7 @@ class BookSerializer
 
     books.each do |book|
       serialized_books << {
-        type: "books",
+        type: 'books',
         id: book.id.to_s,
         attributes: {
           author_name: book.author_name,
@@ -20,8 +20,8 @@ class BookSerializer
     {
       data: serialized_books,
       meta: {
-        status: "SUCCESS",
-        message: "Loaded books"
+        status: 'SUCCESS',
+        message: 'Loaded books'
       }
     }
   end

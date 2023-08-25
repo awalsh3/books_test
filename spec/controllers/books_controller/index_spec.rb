@@ -14,7 +14,9 @@ RSpec.describe 'API V1 Books', type: :request do
     end
     let(:author_name) { 'J.R.R. Tolkien' }
     let(:title) { 'The Hobbit' }
-    let(:description) { 'the unforgettable story of Bilbo, a peace-loving hobbit, who embarks on a strange and magical adventure. A timeless classic.' }
+    let(:description) do
+      'the unforgettable story of Bilbo, a peace-loving hobbit, who embarks on a strange and magical adventure. A timeless classic.'
+    end
     let(:word_count) { 250_000 }
     let(:rating) { 4 }
 
@@ -24,9 +26,9 @@ RSpec.describe 'API V1 Books', type: :request do
       expect(response.status).to eq(200)
       expect(json[:data].size).to eq(1)
       expect(json[:meta]).to eq({
-        message: 'Loaded books',
-        status: 'SUCCESS'
-      })
+                                  message: 'Loaded books',
+                                  status: 'SUCCESS'
+                                })
     end
 
     it 'returns an empty array when there are no books' do

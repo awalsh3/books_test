@@ -3,8 +3,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   #
-  namespace "api" do
-    namespace "v1" do
+  namespace 'api' do
+    namespace 'v1' do
       resources :books, only: [:index]
     end
   end
