@@ -10,22 +10,22 @@ module Api
 
       private
 
-      def serialized_books # rubocop:todo Metrics/MethodLength
-        if books.empty?
-          {
-            data: [],
-            meta: {
-              status: 'SUCCESS',
-              message: 'No books found'
-            }
-          }
-        else
-          BookSerializer.serialize(books)
-        end
+      def serialized_books
+        books.empty? ? no_books_response : BookSerializer.serialize(books)
       end
 
       def books
         Book.all
+      end
+
+      def no_books_response
+        {
+          data: [],
+          meta: {
+            status: 'SUCCESS',
+            message: 'No books found'
+          }
+        }
       end
     end
   end
