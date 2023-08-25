@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BookSerializer
   def self.serialize(books)
     serialized_books = []

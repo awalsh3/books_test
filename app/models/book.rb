@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Book < ApplicationRecord
   validates :author_name, :rating, :word_count, presence: true
   validates :title, uniqueness: true

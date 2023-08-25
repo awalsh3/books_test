@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-puts 'Destroying books...'
+Rails.logger.debug 'Destroying books...'
 Book.destroy_all
 
-puts 'Creating books...'
+Rails.logger.debug 'Creating books...'
 
 book1 = Book.new(
   author_name: 'J.K. Rowling',
@@ -96,4 +96,4 @@ book10 = Book.new(
 )
 book10.save
 
-puts 'Finished!'
+Rails.logger.debug 'Finished!'
