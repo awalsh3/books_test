@@ -1,4 +1,5 @@
 # frozen_string_literal: true
 
-module ApplicationHelper # rubocop:todo Style/Documentation
+# This is a application helper.
+module ApplicationHelper
 end

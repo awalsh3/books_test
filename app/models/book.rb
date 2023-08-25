@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# rubocop:todo Style/Documentation
+# This is a book class that handles book logic.
 class Book < ApplicationRecord
   validates :author_name, :rating, :word_count, presence: true
   validates :title, uniqueness: true # rubocop:todo Rails/UniqueValidationWithoutIndex

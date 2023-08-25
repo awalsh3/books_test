@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
-class ApplicationRecord < ActiveRecord::Base # rubocop:todo Style/Documentation
+# This is a Applicaiton record class.
+class ApplicationRecord < ActiveRecord::Base
   primary_abstract_class
 end

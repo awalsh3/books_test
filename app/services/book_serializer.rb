@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-class BookSerializer # rubocop:todo Style/Documentation
+# This is a serialization service class that handles serializing books.
+class BookSerializer
   def self.serialize(books) # rubocop:todo Metrics/MethodLength
     serialized_books = []
     return if books.count < 1

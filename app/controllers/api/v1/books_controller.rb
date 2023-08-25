@@ -2,7 +2,8 @@
 
 module Api
   module V1
-    class BooksController < ApplicationController # rubocop:todo Style/Documentation
+    # This is a book class that handles book-specific logic.
+    class BooksController < ApplicationController
       def index
         render json: serialized_books
       end
