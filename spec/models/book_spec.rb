@@ -2,31 +2,18 @@
 
 require 'rails_helper'
 
-RSpec.describe Book, type: :model do # rubocop:todo Metrics/BlockLength
-  context 'validity of Book' do # rubocop:todo Metrics/BlockLength
+RSpec.describe Book, type: :model do
+  context 'validity of Book' do
     let!(:book1) do
-      Book.create(
-        author_name: author_name,
-        title: title,
-        description: description,
-        rating: rating,
-        word_count: word_count
-      )
+      create(:book, author_name: author_name, title: title)
     end
+
     let(:book2) do
-      Book.create(
-        author_name: author_name,
-        title: title,
-        description: description,
-        rating: rating,
-        word_count: word_count
-      )
+      build(:book, author_name: author_name, title: title)
     end
+
     let(:author_name) { 'Kathleen Walsh' }
     let(:title) { 'A memoir' }
-    let(:description) { 'The new and improved life story' }
-    let(:word_count) { 250_000 }
-    let(:rating) { 4 }
 
     it 'is valid with valid attributes' do
       expect(book1).to be_valid
@@ -37,9 +24,10 @@ RSpec.describe Book, type: :model do # rubocop:todo Metrics/BlockLength
     end
 
     context 'rating not between 1-5' do
-      let(:rating) { 8 }
+      let(:book) { build(:book, author_name: author_name, title: title, rating: 8) }
+
       it 'is invalid without a star rating between 1-5' do
-        expect(book1).to_not be_valid
+        expect(book).to_not be_valid
       end
     end
   end
