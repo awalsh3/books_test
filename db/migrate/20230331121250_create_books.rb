@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# rubocop Style/Documentation
 class CreateBooks < ActiveRecord::Migration[7.0]
   def change
     create_table :books do |t|
