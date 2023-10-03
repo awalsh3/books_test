@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 module Api
   module V1
+    # This is a book class that handles book-specific logic.
     class BooksController < ApplicationController
       def index
         render json: serialized_books
@@ -8,23 +11,24 @@ module Api
       end
 
       private
-        def serialized_books
-          if books.empty?
-            {
-              data: [],
-              meta: {
-                status: "SUCCESS",
-                message: "No books found"
-              }
-            }
-          else
-            BookSerializer.serialize(books) # returns a json formatted string, as that is what serialization is in this context.
-          end
-        end
 
-        def books
-          Book.all
-        end
+      def serialized_books
+        books.empty? ? no_books_response : BookSerializer.serialize(books)
+      end
+
+      def books
+        Book.all
+      end
+
+      def no_books_response
+        {
+          data: [],
+          meta: {
+            status: 'SUCCESS',
+            message: 'No books found'
+          }
+        }
+      end
     end
   end
 end
