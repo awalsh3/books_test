@@ -44,7 +44,5 @@ jobs:
       run: bundle install
 
     - name: Rubocop run
-      run: |
-        bash -c "
-          bundle exec rubocop
-        "
+      run: bundle exec rubocop
+
