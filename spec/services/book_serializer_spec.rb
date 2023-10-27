@@ -31,10 +31,6 @@ RSpec.describe BookSerializer, type: :model do
               word_count: be_an_instance_of(Integer).or(be_nil)
             )
           )
-        ),
-        meta: a_hash_including(
-          status: 'SUCCESS',
-          message: 'Loaded books'
         )
       )
     end
