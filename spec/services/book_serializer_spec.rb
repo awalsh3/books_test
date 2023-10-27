@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe BookSerializer, type: :model do
+RSpec.describe BookSerializer, type: :service do
   let(:book1) do
     create(:book, author_name: 'Michael Bond', title: 'Paddington Bear',
                   description: 'The adventures of a small toy bear, Paddington after the train station.')
