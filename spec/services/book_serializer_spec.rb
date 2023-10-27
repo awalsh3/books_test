@@ -42,14 +42,13 @@ RSpec.describe BookSerializer, type: :model do
 
   context 'serialization of book' do
     let(:books) { [book1, book2] }
+    subject(:serialized_result) { BookSerializer.serialize(books) }
 
     it 'returns serialized books with correct structure' do
-      serialized_result = BookSerializer.serialize(books)
       expect(serialized_result).to include(expected_serialized_result)
     end
 
     it 'returns serialized books with correct meta message' do
-      serialized_result = BookSerializer.serialize(books)
       expect(serialized_result).to include(meta_result)
     end
   end
