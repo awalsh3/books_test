@@ -14,7 +14,7 @@ RSpec.describe BookSerializer, type: :model do
 
   let(:serialized_format) do
     {
-      data: [book_data(book1, '1'), book_data(book2, '2')],
+      data: [book_data(book1, book1.id.to_s), book_data(book2, book2.id.to_s)],
       meta: {
         status: 'SUCCESS',
         message: 'Loaded books'
