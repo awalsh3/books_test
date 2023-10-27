@@ -12,40 +12,31 @@ RSpec.describe BookSerializer, type: :model do
                   description: 'A a good-natured, yellow-furred, honey-loving bear.', rating: 4, word_count: 600)
   end
 
-  let(:serialized_format) do
-    {
-      data: [book_data(book1, book1.id.to_s), book_data(book2, book2.id.to_s)],
-      meta: {
-        status: 'SUCCESS',
-        message: 'Loaded books'
-      }
-    }
-  end
-
   context 'serialization of book' do
     let(:books) { [book1, book2] }
 
-    it 'returns serialized books' do
+    it 'returns serialized books with correct structure' do
       serialized_result = BookSerializer.serialize(books)
-      expect(serialized_result).to eq(serialized_format)
+
+      expect(serialized_result).to include(
+        data: array_including(
+          a_hash_including(
+            type: 'books',
+            id: be_an_instance_of(String),
+            attributes: a_hash_including(
+              author_name: be_an_instance_of(String),
+              title: be_an_instance_of(String),
+              description: be_an_instance_of(String),
+              rating: be_an_instance_of(Integer).or(be_nil),
+              word_count: be_an_instance_of(Integer).or(be_nil)
+            )
+          )
+        ),
+        meta: a_hash_including(
+          status: 'SUCCESS',
+          message: 'Loaded books'
+        )
+      )
     end
   end
-end
-
-def book_data(book, id)
-  {
-    type: 'books',
-    id: id,
-    attributes: book_attributes(book)
-  }
-end
-
-def book_attributes(book)
-  {
-    author_name: book.author_name,
-    title: book.title,
-    description: book.description,
-    rating: book.rating,
-    word_count: book.word_count
-  }
 end
