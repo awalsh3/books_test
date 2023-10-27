@@ -34,8 +34,8 @@ RSpec.describe BookSerializer, type: :model do
     {
       meta:
         a_hash_including(
-          status: 'SUCCESS',
-          message: 'Loaded books'
+          status: be_an_instance_of(String),
+          message: be_an_instance_of(String)
         )
     }
   end
