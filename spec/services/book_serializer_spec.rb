@@ -12,6 +12,16 @@ RSpec.describe BookSerializer, type: :model do
                   description: 'A a good-natured, yellow-furred, honey-loving bear.', rating: 4, word_count: 600)
   end
 
+  let(:serialized_format) do
+    {
+      data: [book_data(book1, '1'), book_data(book2, '2')],
+      meta: {
+        status: 'SUCCESS',
+        message: 'Loaded books'
+      }
+    }
+  end
+
   context 'serialization of book' do
     let(:books) { [book1, book2] }
 
@@ -20,16 +30,6 @@ RSpec.describe BookSerializer, type: :model do
       expect(serialized_result).to eq(serialized_format)
     end
   end
-end
-
-def serialized_format
-  {
-    data: [book_data(book1, '1'), book_data(book2, '2')],
-    meta: {
-      status: 'SUCCESS',
-      message: 'Loaded books'
-    }
-  }
 end
 
 def book_data(book, id)
