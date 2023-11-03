@@ -4,12 +4,10 @@ require 'rails_helper'
 
 RSpec.describe BookSerializer, type: :service do
   let(:book1) do
-    create(:book, author_name: 'Michael Bond', title: 'Paddington Bear',
-                  description: 'The adventures of a small toy bear, Paddington after the train station.')
+    create(:book)
   end
   let(:book2) do
-    create(:book, author_name: 'A. A. Milne', title: 'Winnie the Pooh',
-                  description: 'A a good-natured, yellow-furred, honey-loving bear.', rating: 4, word_count: 600)
+    create(:book, author_name: 'A. A. Milne', title: 'Winnie the Pooh')
   end
 
   let(:expected_serialized_result) do
