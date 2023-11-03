@@ -57,7 +57,7 @@ RSpec.describe BookSerializer, type: :service do
     let(:books) { [] }
     subject(:serialized_result) { BookSerializer.serialize(books) }
 
-    it 'returns empty array when there are no books' do
+    it 'returns nil when there are no books' do
       expect(serialized_result).to be_nil
     end
   end
