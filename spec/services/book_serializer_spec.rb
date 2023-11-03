@@ -59,4 +59,13 @@ RSpec.describe BookSerializer, type: :service do
       expect(serialized_result).to be_nil
     end
   end
+
+  context 'when there is only 1 book' do
+    let(:books) { book1 }
+    subject(:serialized_result) { BookSerializer.serialize(books) }
+
+    it 'returns 1 book' do
+      expect(serialized_result).to include(expected_serialized_result)
+    end
+  end
 end
