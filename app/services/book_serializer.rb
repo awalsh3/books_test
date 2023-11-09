@@ -3,8 +3,21 @@
 # This is a serialization service class that handles serializing books.
 class BookSerializer
   # The main method to serialize the books
+  # def self.call(books)
+  #   new(books).call
+  # end
+
+  # def initialize(books)
+  #   @books = books
+  # end
+
+  # def call
+  #   serialize(@books)
+  # end
+
   def self.serialize(books)
-    return unless books.any?
+    books = Array(books)
+    return if books.empty?
 
     {
       data: serialize_books(books),
