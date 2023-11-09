@@ -26,7 +26,7 @@ RSpec.describe 'API V1 Books', type: :request do
     let!(:book) { create(:book) } # Ensuring that at least one book exists.
 
     before do
-      allow(BookSerializer).to receive(:serialize).and_raise(StandardError)
+      allow(BookSerializer).to receive(:call).and_raise(StandardError)
     end
 
     it 'it returns a 500 error' do
