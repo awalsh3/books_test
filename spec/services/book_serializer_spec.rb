@@ -38,34 +38,36 @@ RSpec.describe BookSerializer, type: :service do
     }
   end
 
-  context 'serialization of book' do
-    let(:books) { [book1, book2] }
-    subject(:serialized_result) { BookSerializer.call(books) }
+  describe '.call' do
+    context 'serialization of book' do
+      let(:books) { [book1, book2] }
+      subject(:serialized_result) { BookSerializer.call(books) }
 
-    it 'returns serialized books with correct structure' do
-      expect(serialized_result).to include(expected_serialized_result)
+      it 'returns serialized books with correct structure' do
+        expect(serialized_result).to include(expected_serialized_result)
+      end
+
+      it 'returns serialized books with correct meta message' do
+        expect(serialized_result).to include(meta_result)
+      end
     end
 
-    it 'returns serialized books with correct meta message' do
-      expect(serialized_result).to include(meta_result)
+    context 'return of no books' do
+      let(:books) { [] }
+      subject(:serialized_result) { BookSerializer.call(books) }
+
+      it 'returns nil when there are no books' do
+        expect(serialized_result).to be_nil
+      end
     end
-  end
 
-  context 'return of no books' do
-    let(:books) { [] }
-    subject(:serialized_result) { BookSerializer.call(books) }
+    context 'when there is only 1 book' do
+      let(:books) { book1 }
+      subject(:serialized_result) { BookSerializer.call(books) }
 
-    it 'returns nil when there are no books' do
-      expect(serialized_result).to be_nil
-    end
-  end
-
-  context 'when there is only 1 book' do
-    let(:books) { book1 }
-    subject(:serialized_result) { BookSerializer.call(books) }
-
-    it 'returns 1 book' do
-      expect(serialized_result).to include(expected_serialized_result)
+      it 'returns 1 book' do
+        expect(serialized_result).to include(expected_serialized_result)
+      end
     end
   end
 end
