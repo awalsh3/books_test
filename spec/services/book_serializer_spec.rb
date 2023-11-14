@@ -38,9 +38,10 @@ RSpec.describe BookSerializer, type: :service do
     }
   end
 
+  subject(:serialized_result) { BookSerializer.serialize(books) }
+
   context 'serialization of book' do
     let(:books) { [book1, book2] }
-    subject(:serialized_result) { BookSerializer.serialize(books) }
 
     it 'returns serialized books with correct structure' do
       expect(serialized_result).to include(expected_serialized_result)
@@ -53,7 +54,6 @@ RSpec.describe BookSerializer, type: :service do
 
   context 'return of no books' do
     let(:books) { [] }
-    subject(:serialized_result) { BookSerializer.serialize(books) }
 
     it 'returns nil when there are no books' do
       expect(serialized_result).to be_nil
@@ -62,7 +62,6 @@ RSpec.describe BookSerializer, type: :service do
 
   context 'when there is only 1 book' do
     let(:books) { book1 }
-    subject(:serialized_result) { BookSerializer.serialize(books) }
 
     it 'returns 1 book' do
       expect(serialized_result).to include(expected_serialized_result)
