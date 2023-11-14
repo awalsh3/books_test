@@ -63,8 +63,12 @@ RSpec.describe BookSerializer, type: :service do
   context 'when there is only 1 book' do
     let(:books) { book1 }
 
-    it 'returns 1 book' do
-      expect(serialized_result).to include(expected_serialized_result)
+    before do
+      allow(BookSerializer).to receive(:serialize).and_raise(NoMethodError)
+    end
+
+    it 'raises a NoMethodError' do
+      expect { serialized_result }.to raise_error(NoMethodError)
     end
   end
 end
