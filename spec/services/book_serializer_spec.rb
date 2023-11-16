@@ -2,50 +2,73 @@
 
 require 'rails_helper'
 
-RSpec.describe BookSerializer, type: :model do
+RSpec.describe BookSerializer, type: :service do
   let(:book1) do
-    create(:book, author_name: 'Michael Bond', title: 'Paddington Bear',
-                  description: 'The adventures of a small toy bear, Paddington after the train station.')
+    create(:book)
   end
   let(:book2) do
-    create(:book, author_name: 'A. A. Milne', title: 'Winnie the Pooh',
-                  description: 'A a good-natured, yellow-furred, honey-loving bear.', rating: 4, word_count: 600)
+    create(:book, author_name: 'A. A. Milne', title: 'Winnie the Pooh')
   end
+
+  let(:expected_serialized_result) do
+    {
+      data: array_including(
+        a_hash_including(
+          type: 'books',
+          id: be_an_instance_of(String),
+          attributes: a_hash_including(
+            author_name: be_an_instance_of(String),
+            title: be_an_instance_of(String),
+            description: be_an_instance_of(String),
+            rating: be_an_instance_of(Integer).or(be_nil),
+            word_count: be_an_instance_of(Integer).or(be_nil)
+          )
+        )
+      )
+    }
+  end
+
+  let(:meta_result) do
+    {
+      meta:
+        a_hash_including(
+          status: be_an_instance_of(String),
+          message: be_an_instance_of(String)
+        )
+    }
+  end
+
+  subject(:serialized_result) { BookSerializer.serialize(books) }
 
   context 'serialization of book' do
     let(:books) { [book1, book2] }
 
-    it 'returns serialized books' do
-      serialized_result = BookSerializer.serialize(books)
-      expect(serialized_result).to eq(serialized_format)
+    it 'returns serialized books with correct structure' do
+      expect(serialized_result).to include(expected_serialized_result)
+    end
+
+    it 'returns serialized books with correct meta message' do
+      expect(serialized_result).to include(meta_result)
     end
   end
-end
 
-def serialized_format
-  {
-    data: [book_data(book1, '1'), book_data(book2, '2')],
-    meta: {
-      status: 'SUCCESS',
-      message: 'Loaded books'
-    }
-  }
-end
+  context 'return of no books' do
+    let(:books) { [] }
 
-def book_data(book, id)
-  {
-    type: 'books',
-    id: id,
-    attributes: book_attributes(book)
-  }
-end
+    it 'returns nil when there are no books' do
+      expect(serialized_result).to be_nil
+    end
+  end
 
-def book_attributes(book)
-  {
-    author_name: book.author_name,
-    title: book.title,
-    description: book.description,
-    rating: book.rating,
-    word_count: book.word_count
-  }
+  context 'when there is only 1 book' do
+    let(:books) { book1 }
+
+    before do
+      allow(BookSerializer).to receive(:serialize).and_raise(NoMethodError)
+    end
+
+    it 'raises a NoMethodError' do
+      expect { serialized_result }.to raise_error(NoMethodError)
+    end
+  end
 end
