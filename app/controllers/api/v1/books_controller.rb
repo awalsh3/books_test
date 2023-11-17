@@ -13,7 +13,7 @@ module Api
       private
 
       def serialized_books
-        books.empty? ? no_books_response : BookSerializer.serialize(books)
+        books.empty? ? no_books_response : BookSerializer.call(books)
       end
 
       def books

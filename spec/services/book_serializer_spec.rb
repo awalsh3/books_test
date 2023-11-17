@@ -38,37 +38,47 @@ RSpec.describe BookSerializer, type: :service do
     }
   end
 
-  subject(:serialized_result) { BookSerializer.serialize(books) }
+  subject(:serialized_result) { BookSerializer.call(books) }
 
-  context 'serialization of book' do
-    let(:books) { [book1, book2] }
+  describe '.call' do
+    context 'serialization of book' do
+      let(:books) { [book1, book2] }
 
-    it 'returns serialized books with correct structure' do
-      expect(serialized_result).to include(expected_serialized_result)
+      it 'returns serialized books with correct structure' do
+        expect(serialized_result).to include(expected_serialized_result)
+      end
+
+      it 'returns serialized books with correct meta message' do
+        expect(serialized_result).to include(meta_result)
+      end
     end
 
-    it 'returns serialized books with correct meta message' do
-      expect(serialized_result).to include(meta_result)
-    end
-  end
+    context 'return of no books' do
+      let(:books) { [] }
 
-  context 'return of no books' do
-    let(:books) { [] }
-
-    it 'returns nil when there are no books' do
-      expect(serialized_result).to be_nil
-    end
-  end
-
-  context 'when there is only 1 book' do
-    let(:books) { book1 }
-
-    before do
-      allow(BookSerializer).to receive(:serialize).and_raise(NoMethodError)
+      it 'returns nil when there are no books' do
+        expect(serialized_result).to be_nil
+      end
     end
 
-    it 'raises a NoMethodError' do
-      expect { serialized_result }.to raise_error(NoMethodError)
+    context 'when there is only 1 book' do
+      let(:books) { book1 }
+
+      it 'returns serialized single book' do
+        expect(serialized_result).to include(expected_serialized_result)
+      end
+    end
+
+    context 'when it does not respond to the expected methods' do
+      let(:books) { book1 }
+
+      before do
+        allow(BookSerializer).to receive(:call).and_raise(NoMethodError)
+      end
+
+      it 'raises a NoMethodError' do
+        expect { serialized_result }.to raise_error(NoMethodError)
+      end
     end
   end
 end

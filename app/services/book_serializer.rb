@@ -3,8 +3,25 @@
 # This is a serialization service class that handles serializing books.
 class BookSerializer
   # The main method to serialize the books
-  def self.serialize(books)
-    return unless books.any?
+  def self.call(books)
+    new(books).call
+  end
+
+  def initialize(books)
+    @books = books
+  end
+
+  def call
+    serialize(books)
+  end
+
+  private
+
+  attr_reader :books
+
+  def serialize(books)
+    books = Array(books)
+    return if books.empty?
 
     {
       data: serialize_books(books),
@@ -15,11 +32,11 @@ class BookSerializer
     }
   end
 
-  def self.serialize_books(books)
+  def serialize_books(books)
     books.map { |book| serialize_book(book) }
   end
 
-  def self.serialize_book(book)
+  def serialize_book(book)
     {
       type: 'books',
       id: book.id.to_s,
@@ -27,7 +44,7 @@ class BookSerializer
     }
   end
 
-  def self.serialize_attributes(book)
+  def serialize_attributes(book)
     {
       author_name: book.author_name,
       title: book.title,
